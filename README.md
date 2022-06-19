@@ -32,3 +32,8 @@ fortran-mach = { git="https://github.com/jacobwilliams/fortran-mach.git", tag = 
 ### Documentation
 
 The latest API documentation can be found [here](https://jacobwilliams.github.io/fortran-mach/). This was generated from the source code using [FORD](https://github.com/Fortran-FOSS-Programmers/ford).
+
+### References
+
+ * Bo Einarsson, [d1mach revisited: no more uncommenting DATA statements](https://wg25.taa.univie.ac.at/ifip/kyoto/workshop-info/proceedings/einarsson/d1mach.html) Presented at the [IFIP WG 2.5](https://wg25.taa.univie.ac.at) International Workshop on "Current Directions in Numerical Software and High Performance Computing", 19 - 20 October 1995, Kyoto, Japan.
+
