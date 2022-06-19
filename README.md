@@ -26,12 +26,15 @@ Or, to use a specific version:
 
 ```toml
 [dependencies]
-fortran-mach = { git="https://github.com/jacobwilliams/fortran-mach.git", tag = "1.0.0" }
+fortran-mach = { git="https://github.com/jacobwilliams/fortran-mach.git", tag = "0.1.0" }
 ```
 
 ### Documentation
 
 The latest API documentation can be found [here](https://jacobwilliams.github.io/fortran-mach/). This was generated from the source code using [FORD](https://github.com/Fortran-FOSS-Programmers/ford).
+
+### See also
+ * J. Williams, [D1MACH Re-Revisited](https://degenerateconic.com/d1mach-re-revisited.html), June 19, 2022
 
 ### References
 
