@@ -124,16 +124,16 @@
     <h2>public pure function d1mach(i)</h2>
     
 
-    <p>Return floating point machine dependent constants.</p>
+    <p>Return floating point (double precision) machine dependent constants.</p>
 <p>D1MACH can be used to obtain machine-dependent parameters for the
-  local machine environment.  It is a function subprogram with one
-  (input) argument, and can be referenced as follows:</p>
-<div class="codehilite"><pre><span></span><code><span class="w">       </span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">D1MACH</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"></span>
+ local machine environment.  It is a function subprogram with one
+ (input) argument, and can be referenced as follows:</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">D1MACH</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
 
-<p>where I=1,...,5.  The (output) value of A above is determined by
-  the (input) value of I.  The results for various values of I are
-  discussed below.</p>
+<p>where <code>I=1,...,5</code>.  The (output) value of <code>A</code> above is determined by
+ the (input) value of <code>I</code>.  The results for various values of <code>I</code> are
+ discussed below.</p>
 <ul>
 <li><code>D1MACH(1) = B**(EMIN-1)</code>, the smallest positive magnitude.</li>
 <li><code>D1MACH(2) = B**EMAX*(1 - B**(-T))</code>, the largest magnitude.</li>
@@ -141,20 +141,20 @@
 <li><code>D1MACH(4) = B**(1-T)</code>, the largest relative spacing.</li>
 <li><code>D1MACH(5) = LOG10(B)</code></li>
 </ul>
-<p>Assume single precision numbers are represented in the T-digit,
-  base-B form</p>
-<div class="codehilite"><pre><span></span><code>         sign (B**E)*( (X(1)/B) + ... + (X(T)/B**T) )
+<p>Assume single precision numbers are represented in the <code>T</code>-digit,
+ base-<code>B</code> form</p>
+<div class="codehilite"><pre><span></span><code><span class="w"> </span><span class="nb">sign</span><span class="w"> </span><span class="p">(</span><span class="n">B</span><span class="o">**</span><span class="n">E</span><span class="p">)</span><span class="o">*</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="n">B</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="p">(</span><span class="n">X</span><span class="p">(</span><span class="n">T</span><span class="p">)</span><span class="o">/</span><span class="n">B</span><span class="o">**</span><span class="n">T</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
 
-<p>where 0 &lt;= X(I) &lt; B for I=1,...,T, 0 &lt; X(1), and
-  EMIN &lt;= E &lt;= EMAX.</p>
-<p>The values of B, T, EMIN and EMAX are provided in I1MACH as
-  follows:</p>
+<p>where <code>0 &lt;= X(I) &lt; B</code> for <code>I=1,...,T, 0 &lt; X(1)</code>, and
+ <code>EMIN &lt;= E &lt;= EMAX</code>.</p>
+<p>The values of <code>B</code>, <code>T</code>, <code>EMIN</code> and <code>EMAX</code> are provided in <a href="../proc/i1mach.html">i1mach</a> as
+ follows:</p>
 <ul>
 <li><code>I1MACH(10) = B</code>, the base.</li>
-<li><code>I1MACH(11) = T</code>, the number of base-B digits.</li>
-<li><code>I1MACH(12) = EMIN</code>, the smallest exponent E.</li>
-<li><code>I1MACH(13) = EMAX</code>, the largest exponent E.</li>
+<li><code>I1MACH(11) = T</code>, the number of base-<code>B</code> digits.</li>
+<li><code>I1MACH(12) = EMIN</code>, the smallest exponent <code>E</code>.</li>
+<li><code>I1MACH(13) = EMAX</code>, the largest exponent <code>E</code>.</li>
 </ul>
 <h3>Author</h3>
 <ul>

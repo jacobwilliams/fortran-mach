@@ -126,53 +126,61 @@
 
     <p>Return integer machine dependent constants.</p>
 <p>I1MACH can be used to obtain machine-dependent parameters for the
-   local machine environment.  It is a function subprogram with one
-   (input) argument and can be referenced as follows:</p>
-<div class="codehilite"><pre><span></span><code><span class="w">        </span><span class="n">K</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">I1MACH</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"></span>
+  local machine environment.  It is a function subprogram with one
+  (input) argument and can be referenced as follows:</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">K</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">I1MACH</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
 
-<p>where I=1,...,16.  The (output) value of K above is determined by
-   the (input) value of I.  The results for various values of I are
-   discussed below.</p>
-<p>I/O unit numbers:
-     * <code>I1MACH( 1)</code>   = the standard input unit.
-     * <code>I1MACH( 2)</code>   = the standard output unit.
-     * <code>I1MACH( 3)</code>   = the standard punch unit.
-     * <code>I1MACH( 4)</code>   = the standard error message unit.</p>
-<p>Words:
-     * <code>I1MACH( 5)</code> = the number of bits per integer storage unit.
-     * <code>I1MACH( 6)</code> = the number of characters per integer storage unit.</p>
-<p>Integers:
-     assume integers are represented in the S-digit, base-A form</p>
-<div class="codehilite"><pre><span></span><code>                <span class="nv">sign</span> <span class="ss">(</span> <span class="nv">X</span><span class="ss">(</span><span class="nv">S</span><span class="o">-</span><span class="mi">1</span><span class="ss">)</span><span class="o">*</span><span class="nv">A</span><span class="o">**</span><span class="ss">(</span><span class="nv">S</span><span class="o">-</span><span class="mi">1</span><span class="ss">)</span> <span class="o">+</span> ... <span class="o">+</span> <span class="nv">X</span><span class="ss">(</span><span class="mi">1</span><span class="ss">)</span><span class="o">*</span><span class="nv">A</span> <span class="o">+</span> <span class="nv">X</span><span class="ss">(</span><span class="mi">0</span><span class="ss">)</span> <span class="ss">)</span>
+<p>where <code>I=1,...,16</code>.  The (output) value of <code>K</code> above is determined by
+  the (input) value of <code>I</code>.  The results for various values of <code>I</code> are
+  discussed below.</p>
+<p>I/O unit numbers:</p>
+<ul>
+<li><code>I1MACH( 1)</code>   = the standard input unit.</li>
+<li><code>I1MACH( 2)</code>   = the standard output unit.</li>
+<li><code>I1MACH( 3)</code>   = the standard punch unit.</li>
+<li><code>I1MACH( 4)</code>   = the standard error message unit.</li>
+</ul>
+<p>Words:</p>
+<ul>
+<li><code>I1MACH( 5)</code> = the number of bits per integer storage unit.</li>
+<li><code>I1MACH( 6)</code> = the number of characters per integer storage unit.</li>
+</ul>
+<p>Integers:</p>
+<p>assume integers are represented in the <code>S</code>-digit, base-<code>A</code> form</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">sign</span> <span class="ss">(</span> <span class="nv">X</span><span class="ss">(</span><span class="nv">S</span><span class="o">-</span><span class="mi">1</span><span class="ss">)</span><span class="o">*</span><span class="nv">A</span><span class="o">**</span><span class="ss">(</span><span class="nv">S</span><span class="o">-</span><span class="mi">1</span><span class="ss">)</span> <span class="o">+</span> ... <span class="o">+</span> <span class="nv">X</span><span class="ss">(</span><span class="mi">1</span><span class="ss">)</span><span class="o">*</span><span class="nv">A</span> <span class="o">+</span> <span class="nv">X</span><span class="ss">(</span><span class="mi">0</span><span class="ss">)</span> <span class="ss">)</span>
 
-                <span class="nv">where</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="nv">X</span><span class="ss">(</span><span class="nv">I</span><span class="ss">)</span> <span class="o">&lt;</span> <span class="nv">A</span> <span class="k">for</span> <span class="nv">I</span><span class="o">=</span><span class="mi">0</span>,...,<span class="nv">S</span><span class="o">-</span><span class="mi">1</span>.
+  <span class="nv">where</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="nv">X</span><span class="ss">(</span><span class="nv">I</span><span class="ss">)</span> <span class="o">&lt;</span> <span class="nv">A</span> <span class="k">for</span> <span class="nv">I</span><span class="o">=</span><span class="mi">0</span>,...,<span class="nv">S</span><span class="o">-</span><span class="mi">1</span>.
 </code></pre></div>
 
-<div class="codehilite"><pre><span></span><code> * `I1MACH( 7) = A`, the base.
- * `I1MACH( 8) = S`, the number of base-A digits.
- * `I1MACH( 9) = A**S - 1`, the largest magnitude.
+<ul>
+<li><code>I1MACH( 7) = A</code>, the base.</li>
+<li><code>I1MACH( 8) = S</code>, the number of base-A digits.</li>
+<li><code>I1MACH( 9) = A**S - 1</code>, the largest magnitude.</li>
+</ul>
+<p>Floating-Point Numbers:</p>
+<p>Assume floating-point numbers are represented in the <code>T</code>-digit, base-<code>B</code> form</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">sign</span> <span class="ss">(</span><span class="nv">B</span><span class="o">**</span><span class="nv">E</span><span class="ss">)</span><span class="o">*</span><span class="ss">(</span> <span class="ss">(</span><span class="nv">X</span><span class="ss">(</span><span class="mi">1</span><span class="ss">)</span><span class="o">/</span><span class="nv">B</span><span class="ss">)</span> <span class="o">+</span> ... <span class="o">+</span> <span class="ss">(</span><span class="nv">X</span><span class="ss">(</span><span class="nv">T</span><span class="ss">)</span><span class="o">/</span><span class="nv">B</span><span class="o">**</span><span class="nv">T</span><span class="ss">)</span> <span class="ss">)</span>
+
+  <span class="nv">where</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="nv">X</span><span class="ss">(</span><span class="nv">I</span><span class="ss">)</span> <span class="o">&lt;</span> <span class="nv">B</span> <span class="k">for</span> <span class="nv">I</span><span class="o">=</span><span class="mi">1</span>,...,<span class="nv">T</span>,
+  <span class="mi">0</span> <span class="o">&lt;</span> <span class="nv">X</span><span class="ss">(</span><span class="mi">1</span><span class="ss">)</span>, <span class="nv">and</span> <span class="nv">EMIN</span> <span class="o">&lt;=</span> <span class="nv">E</span> <span class="o">&lt;=</span> <span class="nv">EMAX</span>.
 </code></pre></div>
 
-<p>Floating-Point Numbers:
-     Assume floating-point numbers are represented in the T-digit, base-B form</p>
-<div class="codehilite"><pre><span></span><code>                <span class="nv">sign</span> <span class="ss">(</span><span class="nv">B</span><span class="o">**</span><span class="nv">E</span><span class="ss">)</span><span class="o">*</span><span class="ss">(</span> <span class="ss">(</span><span class="nv">X</span><span class="ss">(</span><span class="mi">1</span><span class="ss">)</span><span class="o">/</span><span class="nv">B</span><span class="ss">)</span> <span class="o">+</span> ... <span class="o">+</span> <span class="ss">(</span><span class="nv">X</span><span class="ss">(</span><span class="nv">T</span><span class="ss">)</span><span class="o">/</span><span class="nv">B</span><span class="o">**</span><span class="nv">T</span><span class="ss">)</span> <span class="ss">)</span>
-
-                <span class="nv">where</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="nv">X</span><span class="ss">(</span><span class="nv">I</span><span class="ss">)</span> <span class="o">&lt;</span> <span class="nv">B</span> <span class="k">for</span> <span class="nv">I</span><span class="o">=</span><span class="mi">1</span>,...,<span class="nv">T</span>,
-                <span class="mi">0</span> <span class="o">&lt;</span> <span class="nv">X</span><span class="ss">(</span><span class="mi">1</span><span class="ss">)</span>, <span class="nv">and</span> <span class="nv">EMIN</span> <span class="o">&lt;=</span> <span class="nv">E</span> <span class="o">&lt;=</span> <span class="nv">EMAX</span>.
-</code></pre></div>
-
-<div class="codehilite"><pre><span></span><code> `I1MACH(10) = B`, the base.
-</code></pre></div>
-
-<p>Single-Precision:
-     * <code>I1MACH(11) = T</code>, the number of base-B digits.
-     * <code>I1MACH(12) = EMIN</code>, the smallest exponent E.
-     * <code>I1MACH(13) = EMAX</code>, the largest exponent E.</p>
-<p>Double-Precision:
-     * <code>I1MACH(14) = T</code>, the number of base-B digits.
-     * <code>I1MACH(15) = EMIN</code>, the smallest exponent E.
-     * <code>I1MACH(16) = EMAX</code>, the largest exponent E.</p>
+<ul>
+<li><code>I1MACH(10) = B</code>, the base.</li>
+</ul>
+<p>Single-Precision:</p>
+<ul>
+<li><code>I1MACH(11) = T</code>, the number of base-<code>B</code> digits.</li>
+<li><code>I1MACH(12) = EMIN</code>, the smallest exponent <code>E</code>.</li>
+<li><code>I1MACH(13) = EMAX</code>, the largest exponent <code>E</code>.</li>
+</ul>
+<p>Double-Precision:</p>
+<ul>
+<li><code>I1MACH(14) = T</code>, the number of base-<code>B</code> digits.</li>
+<li><code>I1MACH(15) = EMIN</code>, the smallest exponent <code>E</code>.</li>
+<li><code>I1MACH(16) = EMAX</code>, the largest exponent <code>E</code>.</li>
+</ul>
 <h3>Author</h3>
 <ul>
 <li>Fox, P. A., (Bell Labs)</li>

@@ -124,6 +124,50 @@
     <h2>public pure function r1mach(i)</h2>
     
 
+    <p>Return floating point (single precision) machine dependent constants.</p>
+<p>R1MACH can be used to obtain machine-dependent parameters for the
+  local machine environment.  It is a function subprogram with one
+  (input) argument, and can be referenced as follows:</p>
+<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="n">A</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">R1MACH</span><span class="p">(</span><span class="n">I</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
+<p>where <code>I=1,...,5</code>.  The (output) value of <code>A</code> above is determined by
+  the (input) value of <code>I</code>.  The results for various values of <code>I</code> are
+  discussed below.</p>
+<ul>
+<li><code>R1MACH(1) = B**(EMIN-1)</code>, the smallest positive magnitude.</li>
+<li><code>R1MACH(2) = B**EMAX*(1 - B**(-T))</code>, the largest magnitude.</li>
+<li><code>R1MACH(3) = B**(-T)</code>, the smallest relative spacing.</li>
+<li><code>R1MACH(4) = B**(1-T)</code>, the largest relative spacing.</li>
+<li><code>R1MACH(5) = LOG10(B)</code></li>
+</ul>
+<p>Assume single precision numbers are represented in the <code>T</code>-digit, base-<code>B</code> form</p>
+<div class="codehilite"><pre><span></span><code>  <span class="nv">sign</span> <span class="ss">(</span><span class="nv">B</span><span class="o">**</span><span class="nv">E</span><span class="ss">)</span><span class="o">*</span><span class="ss">(</span> <span class="ss">(</span><span class="nv">X</span><span class="ss">(</span><span class="mi">1</span><span class="ss">)</span><span class="o">/</span><span class="nv">B</span><span class="ss">)</span> <span class="o">+</span> ... <span class="o">+</span> <span class="ss">(</span><span class="nv">X</span><span class="ss">(</span><span class="nv">T</span><span class="ss">)</span><span class="o">/</span><span class="nv">B</span><span class="o">**</span><span class="nv">T</span><span class="ss">)</span> <span class="ss">)</span>
+
+  <span class="nv">where</span> <span class="mi">0</span> <span class="o">&lt;=</span> <span class="nv">X</span><span class="ss">(</span><span class="nv">I</span><span class="ss">)</span> <span class="o">&lt;</span> <span class="nv">B</span> <span class="k">for</span> <span class="nv">I</span><span class="o">=</span><span class="mi">1</span>,...,<span class="nv">T</span>, <span class="mi">0</span> <span class="o">&lt;</span> <span class="nv">X</span><span class="ss">(</span><span class="mi">1</span><span class="ss">)</span>, <span class="nv">and</span>
+  <span class="nv">EMIN</span> <span class="o">&lt;=</span> <span class="nv">E</span> <span class="o">&lt;=</span> <span class="nv">EMAX</span>.
+</code></pre></div>
+
+<p>The values of <code>B</code>, <code>T</code>, <code>EMIN</code> and <code>EMAX</code> are provided in <a href="../proc/i1mach.html">i1mach</a> as
+  follows:</p>
+<ul>
+<li><code>I1MACH(10) = B</code>, the base.</li>
+<li><code>I1MACH(11) = T</code>, the number of base-<code>B</code> digits.</li>
+<li><code>I1MACH(12) = EMIN</code>, the smallest exponent <code>E</code>.</li>
+<li><code>I1MACH(13) = EMAX</code>, the largest exponent <code>E</code>.</li>
+</ul>
+<h3>Author</h3>
+<ul>
+<li>Fox, P. A., (Bell Labs)</li>
+<li>Hall, A. D., (Bell Labs)</li>
+<li>Schryer, N. L., (Bell Labs)</li>
+</ul>
+<h3>Revision history</h3>
+<ul>
+<li>790101  DATE WRITTEN</li>
+<li>960329  Modified for Fortran 90 (BE after suggestions by EG)</li>
+<li>220619  Modified for Fortran 2008 (JW)</li>
+</ul>
 
     <h3>Arguments</h3>
       <table class="table table-striped varlist">

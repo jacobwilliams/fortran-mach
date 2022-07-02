@@ -28,48 +28,49 @@
 
 !*******************************************************************
 !>
-!  Return floating point machine dependent constants.
+!  Return floating point (double precision) machine dependent constants.
 !
 !  D1MACH can be used to obtain machine-dependent parameters for the
 !  local machine environment.  It is a function subprogram with one
 !  (input) argument, and can be referenced as follows:
 !
-!```fortran
-!       A = D1MACH(I)
-!```
+! ```fortran
+!   A = D1MACH(I)
+! ```
 !
-!  where I=1,...,5.  The (output) value of A above is determined by
-!  the (input) value of I.  The results for various values of I are
+!  where `I=1,...,5`.  The (output) value of `A` above is determined by
+!  the (input) value of `I`.  The results for various values of `I` are
 !  discussed below.
 !
-!   * `D1MACH(1) = B**(EMIN-1)`, the smallest positive magnitude.
-!   * `D1MACH(2) = B**EMAX*(1 - B**(-T))`, the largest magnitude.
-!   * `D1MACH(3) = B**(-T)`, the smallest relative spacing.
-!   * `D1MACH(4) = B**(1-T)`, the largest relative spacing.
-!   * `D1MACH(5) = LOG10(B)`
+!  * `D1MACH(1) = B**(EMIN-1)`, the smallest positive magnitude.
+!  * `D1MACH(2) = B**EMAX*(1 - B**(-T))`, the largest magnitude.
+!  * `D1MACH(3) = B**(-T)`, the smallest relative spacing.
+!  * `D1MACH(4) = B**(1-T)`, the largest relative spacing.
+!  * `D1MACH(5) = LOG10(B)`
 !
-!  Assume single precision numbers are represented in the T-digit,
-!  base-B form
+!  Assume single precision numbers are represented in the `T`-digit,
+!  base-`B` form
+! ```fortran
+!  sign (B**E)*( (X(1)/B) + ... + (X(T)/B**T) )
+! ```
 !
-!             sign (B**E)*( (X(1)/B) + ... + (X(T)/B**T) )
+!  where `0 <= X(I) < B` for `I=1,...,T, 0 < X(1)`, and
+!  `EMIN <= E <= EMAX`.
 !
-!  where 0 <= X(I) < B for I=1,...,T, 0 < X(1), and
-!  EMIN <= E <= EMAX.
-!
-!  The values of B, T, EMIN and EMAX are provided in I1MACH as
+!  The values of `B`, `T`, `EMIN` and `EMAX` are provided in [[I1MACH]] as
 !  follows:
 !
 !  * `I1MACH(10) = B`, the base.
-!  * `I1MACH(11) = T`, the number of base-B digits.
-!  * `I1MACH(12) = EMIN`, the smallest exponent E.
-!  * `I1MACH(13) = EMAX`, the largest exponent E.
+!  * `I1MACH(11) = T`, the number of base-`B` digits.
+!  * `I1MACH(12) = EMIN`, the smallest exponent `E`.
+!  * `I1MACH(13) = EMAX`, the largest exponent `E`.
 !
-!### Author
+! ### Author
 !  * Fox, P. A., (Bell Labs)
 !  * Hall, A. D., (Bell Labs)
 !  * Schryer, N. L., (Bell Labs)
 !
-!### Revision history
+! ### Revision history
 !  * 790101  DATE WRITTEN
 !  * 960329  Modified for Fortran 90 (BE after suggestions by EHG)
 !  * 220619  Modified for Fortran 2008 (JW)
@@ -98,59 +99,66 @@
 !>
 !  Return integer machine dependent constants.
 !
-!   I1MACH can be used to obtain machine-dependent parameters for the
-!   local machine environment.  It is a function subprogram with one
-!   (input) argument and can be referenced as follows:
+!  I1MACH can be used to obtain machine-dependent parameters for the
+!  local machine environment.  It is a function subprogram with one
+!  (input) argument and can be referenced as follows:
 !
 !```fortran
-!        K = I1MACH(I)
+!  K = I1MACH(I)
 !```
 !
-!   where I=1,...,16.  The (output) value of K above is determined by
-!   the (input) value of I.  The results for various values of I are
-!   discussed below.
+!  where `I=1,...,16`.  The (output) value of `K` above is determined by
+!  the (input) value of `I`.  The results for various values of `I` are
+!  discussed below.
 !
-!   I/O unit numbers:
-!     * `I1MACH( 1)`   = the standard input unit.
-!     * `I1MACH( 2)`   = the standard output unit.
-!     * `I1MACH( 3)`   = the standard punch unit.
-!     * `I1MACH( 4)`   = the standard error message unit.
+! I/O unit numbers:
 !
-!   Words:
-!     * `I1MACH( 5)` = the number of bits per integer storage unit.
-!     * `I1MACH( 6)` = the number of characters per integer storage unit.
+!  * `I1MACH( 1)`   = the standard input unit.
+!  * `I1MACH( 2)`   = the standard output unit.
+!  * `I1MACH( 3)`   = the standard punch unit.
+!  * `I1MACH( 4)`   = the standard error message unit.
 !
-!   Integers:
-!     assume integers are represented in the S-digit, base-A form
+! Words:
+!
+!  * `I1MACH( 5)` = the number of bits per integer storage unit.
+!  * `I1MACH( 6)` = the number of characters per integer storage unit.
+!
+! Integers:
+!
+!  assume integers are represented in the `S`-digit, base-`A` form
 !```
-!                sign ( X(S-1)*A**(S-1) + ... + X(1)*A + X(0) )
+!  sign ( X(S-1)*A**(S-1) + ... + X(1)*A + X(0) )
 !
-!                where 0 <= X(I) < A for I=0,...,S-1.
+!  where 0 <= X(I) < A for I=0,...,S-1.
 !```
 !
-!     * `I1MACH( 7) = A`, the base.
-!     * `I1MACH( 8) = S`, the number of base-A digits.
-!     * `I1MACH( 9) = A**S - 1`, the largest magnitude.
+!  * `I1MACH( 7) = A`, the base.
+!  * `I1MACH( 8) = S`, the number of base-A digits.
+!  * `I1MACH( 9) = A**S - 1`, the largest magnitude.
 !
-!   Floating-Point Numbers:
-!     Assume floating-point numbers are represented in the T-digit, base-B form
+! Floating-Point Numbers:
+!
+!  Assume floating-point numbers are represented in the `T`-digit, base-`B` form
 !```
-!                sign (B**E)*( (X(1)/B) + ... + (X(T)/B**T) )
+!  sign (B**E)*( (X(1)/B) + ... + (X(T)/B**T) )
 !
-!                where 0 <= X(I) < B for I=1,...,T,
-!                0 < X(1), and EMIN <= E <= EMAX.
+!  where 0 <= X(I) < B for I=1,...,T,
+!  0 < X(1), and EMIN <= E <= EMAX.
 !```
-!     `I1MACH(10) = B`, the base.
 !
-!   Single-Precision:
-!     * `I1MACH(11) = T`, the number of base-B digits.
-!     * `I1MACH(12) = EMIN`, the smallest exponent E.
-!     * `I1MACH(13) = EMAX`, the largest exponent E.
+!  * `I1MACH(10) = B`, the base.
 !
-!   Double-Precision:
-!     * `I1MACH(14) = T`, the number of base-B digits.
-!     * `I1MACH(15) = EMIN`, the smallest exponent E.
-!     * `I1MACH(16) = EMAX`, the largest exponent E.
+! Single-Precision:
+!
+!  * `I1MACH(11) = T`, the number of base-`B` digits.
+!  * `I1MACH(12) = EMIN`, the smallest exponent `E`.
+!  * `I1MACH(13) = EMAX`, the largest exponent `E`.
+!
+! Double-Precision:
+!
+!  * `I1MACH(14) = T`, the number of base-`B` digits.
+!  * `I1MACH(15) = EMIN`, the smallest exponent `E`.
+!  * `I1MACH(16) = EMAX`, the largest exponent `E`.
 !
 !### Author
 !  * Fox, P. A., (Bell Labs)
@@ -196,19 +204,19 @@
 
 !*******************************************************************
 !>
-!  Return floating point machine dependent constants.
-!!
-!   R1MACH can be used to obtain machine-dependent parameters for the
-!   local machine environment.  It is a function subprogram with one
-!   (input) argument, and can be referenced as follows:
+!  Return floating point (single precision) machine dependent constants.
+!
+!  R1MACH can be used to obtain machine-dependent parameters for the
+!  local machine environment.  It is a function subprogram with one
+!  (input) argument, and can be referenced as follows:
 !
 !```fortran
-!        A = R1MACH(I)
+!  A = R1MACH(I)
 !```
 !
-!   where I=1,...,5.  The (output) value of A above is determined by
-!   the (input) value of I.  The results for various values of I are
-!   discussed below.
+!  where `I=1,...,5`.  The (output) value of `A` above is determined by
+!  the (input) value of `I`.  The results for various values of `I` are
+!  discussed below.
 !
 !   * `R1MACH(1) = B**(EMIN-1)`, the smallest positive magnitude.
 !   * `R1MACH(2) = B**EMAX*(1 - B**(-T))`, the largest magnitude.
@@ -216,20 +224,21 @@
 !   * `R1MACH(4) = B**(1-T)`, the largest relative spacing.
 !   * `R1MACH(5) = LOG10(B)`
 !
-!   Assume single precision numbers are represented in the T-digit, base-B form
+!   Assume single precision numbers are represented in the `T`-digit, base-`B` form
 !```
-!              sign (B**E)*( (X(1)/B) + ... + (X(T)/B**T) )
+!  sign (B**E)*( (X(1)/B) + ... + (X(T)/B**T) )
 !
-!   where 0 <= X(I) < B for I=1,...,T, 0 < X(1), and
-!   EMIN <= E <= EMAX.
+!  where 0 <= X(I) < B for I=1,...,T, 0 < X(1), and
+!  EMIN <= E <= EMAX.
 !```
 !
-!   The values of B, T, EMIN and EMAX are provided in I1MACH as
-!   follows:
-!   * `I1MACH(10) = B`, the base.
-!   * `I1MACH(11) = T`, the number of base-B digits.
-!   * `I1MACH(12) = EMIN`, the smallest exponent E.
-!   * `I1MACH(13) = EMAX`, the largest exponent E.
+!  The values of `B`, `T`, `EMIN` and `EMAX` are provided in [[I1MACH]] as
+!  follows:
+!
+!  * `I1MACH(10) = B`, the base.
+!  * `I1MACH(11) = T`, the number of base-`B` digits.
+!  * `I1MACH(12) = EMIN`, the smallest exponent `E`.
+!  * `I1MACH(13) = EMAX`, the largest exponent `E`.
 !
 !### Author
 !  * Fox, P. A., (Bell Labs)
